@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>安卓应用异常权限检测</title>
+    <link  rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <h1>安卓应用异常权限检测</h1>
+    <hr />
+    <form action="" method="" enctype="multipart/form-data">
+        <a class="opts_btn" href="javascript:void(0)">
+            <label id="opst_txt">上传安卓应用apk文件</label>
+            <input type="file" id="oFile" class="oFile" name="myFiles" onchange="FileChangeFn(event)" />
+        </a>
+        <span class="opts_btn" style="float: right">
+            <select  id="selectType">
+                <option value="">--请选择应用类型--</option>
+                <option value="video">手机工具</option>
+                <option value="music">多媒体</option>
+                <option value="social">社交通讯</option>
+                <option value="shooting">生活服务</option>
+                <option value="convenient">学习阅读</option>
+                <option value="financial">金融理财</option>
+            </select>
+        </span>
+
+        <!--
+        html5 file 在选择上传文件的时候，根据需要可限制指定的文件类型(默认任意类型 )。在 input type="file" 加上 accept="指定要上传的文件类型"即可
+        例如：
+        <input type="file" id="oFile" name="myFiles" accept=".doc, .docx, .xls, .txt" onchange="FileChangeFn(event)" />
+        accept=".doc, .docx, .xls, .txt" 只能上传word, exls, .txt文件
+        accept=".rar, .zip" 只能上传压缩文件
+        accept=".mp3" 只能上传mp3文件
+        accept=".mp4, .avi, .swf, .mpeg" 只能上传视频文件
+        accept=".jpg, .jpeg .png, .gif, .bmp" 只能上传指定的这些图片文件
+        accept="image/*" image表示图片，*表示所有支持的格式， video/* video表示视频，*表示所有支持的格式
+        注： 如果不加accept属性，则上传任意类型的文件(默认)
+
+        html5 file 在选择上传文件的时候，根据需要可限制选择 1个 或 多个 文件。在 input type="file" 加上 multiple 属性 即可
+        例如：
+        <input type="file" id="oFile" name="myFiles" multiple onchange="FileChangeFn(event)" />
+        加上 multiple 属性 就可以多选啦：可按住鼠标左键拖动进行多选，或按下键盘上的Ctrl键，或 Shitf键 再鼠标左键点选，或 Ctrl + A 全选
+        注： 默认情况下一般都没加multiple 属性，所以只能选择1件文件
+
+        最后：如果以上两种情况都要用到时，就同时加上 multiple属性 和 accept="指定要上传的文件类型"属性即可！
+        例如：
+        <input type="file" id="oFile" name="myFiles" multiple accept=".jpg, .jpeg .png, .gif, .bmp" onchange="FileChangeFn(event)" />
+        -->
+        <div style="position: relative;" id="LimitsInfo">
+            <div style="position: absolute;left:50%;top:50%;margin-top: -11px;margin-left: -56px ">异常权限展示区</div>
+        </div>
+        <!--<div class="speed_box">-->
+            <!--<div id="speed">0%</div>-->
+        <!--</div>-->
+        <label id="file_type"></label>
+
+        <span id="file_size"></span><br /><br />
+        <button type="button" class="send_btn" onclick="UploadFileFn()">开始上传文件</button>
+
+        <div class="clear"></div>
+    </form>
+</body>
+
+<!-- 请正确引入jquery文件 -->
+<script src="js/vendor/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/vendor/template.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/ajax.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/html" id="msglist">
+    {{each data as value }}
+    <ul class="tb" style="cursor: pointer">
+        <li>{{value.LimitsName}}</li>
+        <li>{{value.Function}}</li>
+    </ul>
+    {{/each}}
+</script>
+
+
+</html>

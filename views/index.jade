@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  form(method='post', action='/file/uploading', enctype='multipart/form-data')
+  input(name='inputFile', type='file', multiple='mutiple')
+  input(name='btnUp', type='submit',value='上传')
